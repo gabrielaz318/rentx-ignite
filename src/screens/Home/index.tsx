@@ -3,6 +3,17 @@ import { StatusBar  } from 'expo-status-bar';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, BackHandler } from 'react-native';
+import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
+
+import Animated, {
+    useSharedValue,
+    useAnimatedStyle,
+    useAnimatedGestureHandler,
+    withSpring
+} from 'react-native-reanimated';
+
+const ButtonAnimated = Animated.createAnimatedComponent(RectButton)
 
 import Logo from '../../assets/logo.svg'
 import { api } from '../../service/api';
@@ -15,12 +26,12 @@ import {
     TotalCars,
     HeaderContent,
     CarList,
-    MyCarsButton,
 } from './styles';
 
 import { Load } from '../../components/Load';
 import { CarDTO } from '../../dtos/CarDTO';
 import { useTheme } from 'styled-components';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 interface NavigationProps {
     navigate: (
@@ -44,6 +55,34 @@ export function Home() {
         navigation.navigate('MyCars');
     }
 
+
+    const positionY = useSharedValue(0);
+    const positionX = useSharedValue(0);
+
+    const myCardsButtonStyle = useAnimatedStyle(() => {
+        return {
+            transform: [
+                { translateX: positionX.value },
+                { translateY: positionY.value }
+            ]
+        }
+    })
+
+    const onGestureEvent = useAnimatedGestureHandler({
+        onStart(_, ctx: any){
+            ctx.positionX = positionX.value
+            ctx.positionY = positionY.value
+        },
+        onActive(event, ctx: any) {
+            positionX.value = ctx.positionX + event.translationX
+            positionY.value = ctx.positionY + event.translationY
+        },
+        onEnd() {
+            // positionX.value = withSpring(0)
+            // positionY.value = withSpring(0)
+        },
+    });
+
     useEffect(() => {
         async function fetchCars() {
             try {
@@ -59,6 +98,12 @@ export function Home() {
         fetchCars();
     },[]);
 
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            return true
+        })
+    },[])
+
     return (
         <Container>
             <StatusBar style="light" />
@@ -69,11 +114,11 @@ export function Home() {
                         height={RFValue(12)}
                     />
                     <TotalCars>
-                        Total de {cars.length} carros
+                        {!loading ? `Total de ${cars.length} carros` : ''}
                     </TotalCars>
                 </HeaderContent>
             </Header>
-            {loading ? <Load/> : 
+            {loading ? <LoadAnimation/> : 
                 <CarList 
                     data={cars}
                     keyExtractor={item => item.id}
@@ -83,13 +128,33 @@ export function Home() {
                 />
             }
 
-            <MyCarsButton onPress={handleOpenMyCars}>
-                <Ionicons 
-                    name="ios-car-sport" 
-                    size={32}
-                    color={theme.colors.shape}
-                />
-            </MyCarsButton>
+            <PanGestureHandler onGestureEvent={onGestureEvent}>
+                <Animated.View
+                    style={[myCardsButtonStyle,{
+                        position: 'absolute',
+                        bottom: 13,
+                        right: 22
+                    }]}
+                >
+                    <ButtonAnimated onPress={handleOpenMyCars} style={[styles.button, {backgroundColor: theme.colors.main}]}>
+                        <Ionicons
+                            name="ios-car-sport"
+                            size={32}
+                            color={theme.colors.shape}
+                        />
+                    </ButtonAnimated>
+                </Animated.View>
+            </PanGestureHandler>
         </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    button: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+})
