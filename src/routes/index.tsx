@@ -6,10 +6,10 @@ import { StackRoutes } from './stack.routes';
 
 export function Routes() {
     return (
-		<GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
             <NavigationContainer>
                 <StackRoutes />
             </NavigationContainer>
-		</GestureHandlerRootView>
+    </GestureHandlerRootView>
     );
 }

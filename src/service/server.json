@@ -296,7 +296,16 @@
         "2021-05-29",
         "2021-05-30",
         "2021-05-29",
-        "2021-05-30"
+        "2021-05-30",
+        "2022-03-11",
+        "2022-03-12",
+        "2022-03-13",
+        "2022-03-14",
+        "2022-03-15",
+        "2022-03-16",
+        "2022-03-17",
+        "2022-03-18",
+        "2022-03-19"
       ]
     },
     {
@@ -313,7 +322,15 @@
         "2021-07-18",
         "2021-05-28",
         "2021-05-29",
-        "2021-05-30"
+        "2021-05-30",
+        "2022-03-11",
+        "2022-03-12",
+        "2022-03-13",
+        "2022-03-14",
+        "2022-03-15",
+        "2022-03-16",
+        "2022-03-17",
+        "2022-03-18"
       ]
     },
     {
@@ -321,7 +338,14 @@
       "unavailable_dates": [
         "2021-06-19",
         "2021-06-20",
-        "2021-06-21"
+        "2021-06-21",
+        "2022-04-24",
+        "2022-04-25",
+        "2022-04-26",
+        "2022-04-27",
+        "2022-04-28",
+        "2022-04-29",
+        "2022-04-30"
       ]
     },
     {
@@ -347,6 +371,102 @@
     }
   ],
   "schedules_byuser": [
-    
+    {
+      "user_id": 1,
+      "car": {
+        "id": "ffb71f55-818a-48b1-b7d2-2efc406ede25",
+        "brand": "Porsche",
+        "name": "Panamera",
+        "about": "O Panamera é um automóvel de luxo coupé com porte grande. Tem motorização dianteira V6 e V8. A tração é integral com uma caixa PDK de sete mudanças e dupla embreagem.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 340
+        },
+        "fuel_type": "gasoline_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/2.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "315km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "2.9s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "700 HP"
+          },
+          {
+            "type": "gasoline_motor",
+            "name": "Gasoline"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "4 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/4.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/5.png"
+        ]
+      },
+      "startDate": "11/03/2022",
+      "endDate": "19/03/2022",
+      "id": 1
+    },
+    {
+      "user_id": 1,
+      "car": {
+        "id": "49983f6c-a46a-4dfd-a86e-425b8c72e086",
+        "brand": "Lamborghini",
+        "name": "Huracan",
+        "about": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.",
+        "rent": {
+          "period": "Ao dia",
+          "price": 120
+        },
+        "fuel_type": "electric_motor",
+        "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/4.png",
+        "accessories": [
+          {
+            "type": "speed",
+            "name": "380km/h"
+          },
+          {
+            "type": "acceleration",
+            "name": "3.2s"
+          },
+          {
+            "type": "turning_diameter",
+            "name": "800 HP"
+          },
+          {
+            "type": "electric_motor",
+            "name": "Elétrico"
+          },
+          {
+            "type": "exchange",
+            "name": "Auto"
+          },
+          {
+            "type": "seats",
+            "name": "2 pessoas"
+          }
+        ],
+        "photos": [
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/9.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/10.png",
+          "https://storage.googleapis.com/golden-wind/ignite/react-native/images/11.png"
+        ]
+      },
+      "startDate": "24/04/2022",
+      "endDate": "30/04/2022",
+      "id": 2
+    }
   ]
 }

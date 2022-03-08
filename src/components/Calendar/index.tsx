@@ -67,9 +67,10 @@ function Calendar({ markedDates, onDayPress }: CalendarProps) {
                 textMonthFontFamily: theme.fonts.secondary_600,
                 arrowStyle: {
                     marginHorizontal: -15
-                }
+                },
             }}
-
+            enableSwipeMonths
+            
             firstDay={1}
             minDate={String(new Date())}
             markingType='period'

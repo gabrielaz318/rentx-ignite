@@ -82,7 +82,7 @@ export function MyCars() {
                 <Content>
                     <Appointments>
                         <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-                        <AppointmentsQuantity>05</AppointmentsQuantity>
+                        <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
                     </Appointments>
                     <FlatList 
                         data={cars}

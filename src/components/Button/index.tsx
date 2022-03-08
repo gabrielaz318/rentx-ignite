@@ -11,12 +11,18 @@ import {
 interface Props extends RectButtonProps {
     title: string;
     color?: string;
-    enabled?: boolean;
     load?: boolean; 
     light?: boolean;
 }
 
-export function Button({ title, color, load = false, enabled = true, light = false, ...rest  }: Props) {
+export function Button({ 
+    title, 
+    color, 
+    load = false, 
+    enabled = true, 
+    light = false, 
+    ...rest  
+}: Props) {
     const theme = useTheme();
 
 

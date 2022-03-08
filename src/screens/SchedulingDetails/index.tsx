@@ -71,19 +71,30 @@ export function SchedulingDetails() {
             ...schedulesByCar.data.unavailable_dates,
             ...dates
         ]
-        
-        await api.post(`/schedules_byuser/${car.id}`, {
+        console.log({
+            user_id: 1,
+            car,
+            startDate: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
+            endDate: format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy'),
+        })
+        await api.post(`/schedules_byuser`, {
             user_id: 1,
             car,
             startDate: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
             endDate: format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy'),
         })
 
+        
+
         api.put(`/schedules_bycars/${car.id}`, {
             id: car.id,
             unavailable_dates
         })
-        .then(() => navigation.navigate('SchedulingComplete'))
+        .then(() => navigation.navigate('Confirmation', {
+            title: 'Carro alugado!',
+            message: 'Agora você só precisa ir\naté a concessionária da RENTX',
+            nextScreen: 'Home'
+        }))
         .catch(() => {
             Alert.alert('Erro', 'Não foi possível confirmar o agendamento.')
             setLoading(false)
@@ -108,7 +119,7 @@ export function SchedulingDetails() {
             </Header>
 
             <CarImages>
-                <ImageSlider imagesUrl={['https://production.autoforce.com/uploads/version/profile_image/3188/model_main_comprar-tiptronic_87272c1ff1.png']} />
+                <ImageSlider imagesUrl={car.photos} />
             </CarImages>
 
             <Content>
